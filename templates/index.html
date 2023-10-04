@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Shopping Scraper</title>
+</head>
+
+<body>
+    <h1>Google Shopping Scraper</h1>
+
+    <form method="POST" action="/search">
+        <label for="product_name">Enter Product Name:</label>
+        <input type="text" id="product_name" name="product_name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    <h2>Search Results:</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Seller</th>
+                <th>Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+            <tr>
+                <td>{{ product.Name }}</td>
+                <td>{{ product.Price }}</td>
+                <td>{{ product.Seller }}</td>
+                <td><a href="{{ product.Link }}" target="_blank">View Product</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>
