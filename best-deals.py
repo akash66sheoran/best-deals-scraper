@@ -7,7 +7,9 @@ user_input = input()
 product = user_input.replace(' ', '+')
 google_link = 'https://www.google.com/search?q=' + product + '&tbm=shop'
 
-driver = webdriver.Chrome()
+options = webdriver.ChromeOptions()
+options.add_argument('headless')
+driver = webdriver.Chrome(options=options)
 
 driver.get(google_link)
 
