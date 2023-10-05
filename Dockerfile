@@ -4,7 +4,6 @@ WORKDIR /app/backend
 
 COPY requirements.txt /app/backend
 RUN pip install -r requirements.txt
-RUN sudo apt install python3-flask
 
 COPY . /app/backend
 
