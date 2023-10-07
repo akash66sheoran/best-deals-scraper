@@ -24,6 +24,8 @@ def scrape_google_shopping(product_name):
         link = product.find('a', class_="shntl").get('href')[9:]
         
         data.append({'Name': name, 'Price': price, 'Seller': seller, 'Link': link})
+
+    driver.quit()
     
     return data
 
