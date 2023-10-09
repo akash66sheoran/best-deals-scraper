@@ -24,8 +24,5 @@ COPY . /app/backend
 # Expose the necessary port
 EXPOSE 5000
 
-# Install Chrome from the previously built image
-COPY --from=chrome-builder /usr/bin/google-chrome /usr/bin/google-chrome
-
 # Your application's CMD remains the same
 CMD gunicorn -b 0.0.0.0:5000 app:app
