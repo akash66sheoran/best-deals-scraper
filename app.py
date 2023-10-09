@@ -1,14 +1,23 @@
 from flask import Flask, render_template, request
 from bs4 import BeautifulSoup
 from selenium import webdriver
+from selenium_chrome_standalone import webdriver as chrome_webdriver
+from selenium.webdriver.chrome.options import Options
 
 app = Flask(__name__)
 
 def scrape_google_shopping(product_name):
     google_link = f'https://www.google.com/search?q={product_name.replace(" ", "+")}&tbm=shop'
-    options = webdriver.ChromeOptions()
-    options.add_argument('headless')
-    driver = webdriver.Chrome(options=options)
+
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+
+    # Use the Chrome WebDriver with headless option from Selenium/Chrome-standalone
+    driver = chrome_webdriver.WebDriver(chrome_options=chrome_options)
+    
+    # options = webdriver.ChromeOptions()
+    # options.add_argument('headless')
+    # driver = webdriver.Chrome(options=options)
 
     driver.get(google_link)
 
