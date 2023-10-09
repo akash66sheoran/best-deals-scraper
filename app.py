@@ -1,11 +1,8 @@
 from flask import Flask, render_template, request
 from bs4 import BeautifulSoup
 from selenium import webdriver
-import logging
 
 app = Flask(__name__)
-
-logging.basicConfig(filename='/home/ubuntu/file.log', level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 def scrape_google_shopping(product_name):
     google_link = f'https://www.google.com/search?q={product_name.replace(" ", "+")}&tbm=shop'
