@@ -8,13 +8,7 @@ WORKDIR /app/backend
 COPY requirements.txt /app/backend
 RUN pip install -r requirements.txt
 
-RUN apt-get update && apt-get install -yqq unzip
-
-RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/LATEST_RELEASE/chromedriver_linux64.zip
-
-RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
-
-RUN apt-get install -yqq google-chrome-stable
+RUN pip install selenium chromedriver-autoinstaller
 
 # Copy the rest of your application code
 COPY . /app/backend
