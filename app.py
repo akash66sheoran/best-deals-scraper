@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request
 from bs4 import BeautifulSoup
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 
 app = Flask(__name__)
 
@@ -9,7 +8,7 @@ def scrape_google_shopping(product_name):
     google_link = f'https://www.google.com/search?q={product_name.replace(" ", "+")}&tbm=shop'
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
-    driver = webdriver.Chrome(ChromeDriverManager().install(), options=options)
+    driver = webdriver.Chrome(options=options)
 
     driver.get(google_link)
 
