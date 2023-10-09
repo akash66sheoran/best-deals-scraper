@@ -8,15 +8,13 @@ WORKDIR /app/backend
 COPY requirements.txt /app/backend
 RUN pip install -r requirements.txt
 
-# Install Chrome
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN dpkg -i google-chrome-stable_current_amd64.deb
-RUN apt-get install -f
+RUN apt-get update && apt-get install -yqq unzip
 
-# Install Chrome WebDriver
-RUN wget https://chromedriver.storage.googleapis.com/$(curl -s https://chromedriver.storage.googleapis.com/LATEST_RELEASE)/chromedriver_linux64.zip
-RUN unzip chromedriver_linux64.zip -d /usr/local/bin
-RUN chmod +x /usr/local/bin/chromedriver
+RUN wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/LATEST_RELEASE/chromedriver_linux64.zip
+
+RUN unzip /tmp/chromedriver.zip chromedriver -d /usr/local/bin/
+
+RUN apt-get install -yqq google-chrome-stable
 
 # Copy the rest of your application code
 COPY . /app/backend
