@@ -15,4 +15,4 @@ COPY . /app/backend
 EXPOSE 5000
 
 # Your application's CMD remains the same
-CMD ["python3", "app.py"]
+CMD gunicorn -b 0.0.0.0:5000 app:app
