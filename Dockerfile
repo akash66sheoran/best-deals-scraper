@@ -15,4 +15,4 @@ COPY . /app/backend
 EXPOSE 5000
 
 # Your application's CMD remains the same
-CMD ["python", "app.py"]
+CMD ["python3", "app.py"]
