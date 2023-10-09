@@ -8,8 +8,6 @@ WORKDIR /app/backend
 COPY requirements.txt /app/backend
 RUN pip install -r requirements.txt
 
-RUN pip install selenium chromedriver-autoinstaller
-
 # Copy the rest of your application code
 COPY . /app/backend
 
