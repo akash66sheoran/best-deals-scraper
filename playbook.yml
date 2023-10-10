@@ -35,11 +35,15 @@
         name: gunicorn
         state: present
 
-    - name: Install Google Chrome
+    - name: Download and install Chrome
+      get_url:
+        url: https://dl.google.com/linux/chrome/deb/stable/current_amd64.deb
+        dest: /tmp/google-chrome-stable.deb
+      register: google_chrome_deb
+
+    - name: Install Chrome
       apt:
-        name: google-chrome-stable
-        update_cache: yes
-        cache_valid_time: 3600
+        deb: "{{ google_chrome_deb.dest }}"
         state: present
 
     - name: Create portfolio directory
