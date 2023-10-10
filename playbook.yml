@@ -48,10 +48,10 @@
 
     - name: Create portfolio directory
       file:
-        path: /home/ubuntu/portfolio
+        path: /home/ubuntu/best-deals
         state: directory
 
     - name: Pull repository in user home directory
       git:
         repo: https://github.com/akash66sheoran/best-deals-scraper.git
-        dest: "/home/ubuntu/"
+        dest: "/home/ubuntu/best-deals"
