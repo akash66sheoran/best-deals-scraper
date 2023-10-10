@@ -17,8 +17,36 @@ resource "aws_key_pair" "best_deals_key" {
 }
 
 resource "aws_security_group" "my_security_group" {
-  import {
-    id = "sg-03e0d8c0756dad07e"
+  name = "my-security-group"
+  ingress {
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port = 5000
+    to_port = 5000
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  ingress {
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+  egress {
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 }
 
@@ -26,7 +54,7 @@ resource "aws_instance" "best_deals_website" {
   ami = "ami-0f5ee92e2d63afc18"
   instance_type = "t2.micro"
   key_name = aws_key_pair.best_deals_key.key_name
-  security_groups = ["sg-03e0d8c0756dad07e"]
+  security_groups = ["my-security-group"]
   tags = {
     Name = "best-deals"
   }
