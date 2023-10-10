@@ -16,8 +16,8 @@ resource "aws_key_pair" "best_deals_key" {
   public_key = file("~/.ssh/id_rsa.pub")
 }
 
-resource "aws_security_group" "my_security_group" {
-  name = "my-security-group"
+resource "aws_security_group" "my_security_grp" {
+  name = "my-security-grp"
   ingress {
     from_port = 22
     to_port = 22
@@ -54,7 +54,7 @@ resource "aws_instance" "best_deals_website" {
   ami = "ami-0f5ee92e2d63afc18"
   instance_type = "t2.micro"
   key_name = aws_key_pair.best_deals_key.key_name
-  security_groups = ["my-security-group"]
+  security_groups = ["my-security-grp"]
   tags = {
     Name = "best-deals"
   }
