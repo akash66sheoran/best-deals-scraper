@@ -1,0 +1,53 @@
+---
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: Update EC2
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Install pip
+      apt:
+        name: python3-pip
+        update_cache: yes
+        cache_valid_time: 3600
+        state: present
+
+    - name: Install Flask
+      pip:
+        name: flask
+        state: present
+
+    - name: Install bs4
+      pip:
+        name: bs4
+        state: present
+
+    - name: Install selenium
+      pip:
+        name: selenium
+        state: present
+
+    - name: Install gunicorn
+      pip:
+        name: gunicorn
+        state: present
+
+    - name: Install Google Chrome
+      apt:
+        name: google-chrome-stable
+        update_cache: yes
+        cache_valid_time: 3600
+        state: present
+
+    - name: Create portfolio directory
+      file:
+        path: /home/ubuntu/portfolio
+        state: directory
+
+    - name: Pull repository in user home directory
+      git:
+        repo: https://github.com/akash66sheoran/best-deals-scraper.git
+        dest: "/home/ubuntu"
