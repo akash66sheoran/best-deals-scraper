@@ -59,6 +59,4 @@
     - name: Run Flask app with Gunicorn
       become_user: ubuntu
       become_method: sudo
-      command: gunicorn -d -b 0.0.0.0:8000 app:app
-      args:
-        chdir: /home/ubuntu/best-deals
+      command: chdir=/home/ubuntu/best-deals gunicorn -d -b 0.0.0.0:8000 app:app
