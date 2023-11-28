@@ -56,12 +56,9 @@
         repo: https://github.com/akash66sheoran/best-deals-scraper.git
         dest: "/home/ubuntu/best-deals"
 
-    - name: Change directory to best-deals
-      become_user: ubuntu
-      become_method: sudo
-      command: cd /home/ubuntu/best-deals
-
     - name: Run Flask app with Gunicorn
       become_user: ubuntu
       become_method: sudo
       command: gunicorn -d -b 0.0.0.0:8000 app:app
+      args:
+        chdir: /home/ubuntu/best-deals
