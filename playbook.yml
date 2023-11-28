@@ -55,9 +55,3 @@
       git:
         repo: https://github.com/akash66sheoran/best-deals-scraper.git
         dest: "/home/ubuntu/best-deals"
-
-    - name: Run the application
-      ansible.builtin.shell: gunicorn -b 0.0.0.0:5000 app:app --daemon
-      args:
-        chdir: /home/ubuntu/best-deals
-
