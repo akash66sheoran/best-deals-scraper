@@ -57,8 +57,7 @@
         dest: "/home/ubuntu/best-deals"
 
     - name: Change directory
-      chdir:
-        path: /home/ubuntu/best-deals
+      shell: cd /home/ubuntu/best-deals 
 
     - name: Run the application
       shell: gunicorn -b 0.0.0.0:5000 app:app
