@@ -57,7 +57,7 @@
         dest: "/home/ubuntu/best-deals"
 
     - name: Run the application
-      community.general.gunicorn:
-        app: 'app'
-        chdir: '/home/ubuntu/best-deals'
+      ansible.builtin.shell: gunicorn -b 0.0.0.0:5000 app:app
+      args:
+        chdir: /home/ubuntu/best-deals
 
